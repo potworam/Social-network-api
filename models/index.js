@@ -1,3 +1,5 @@
-const Social = require('./Social');
 
-module.exports = { index };
+ const User = require('./User.js');
+ const Thought = require('./Thought.js');
+
+ module.exports = { User, Thought };

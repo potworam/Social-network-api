@@ -3,5 +3,24 @@
     "express": "^4.18.1",
     "mongoose": "^6.5.4",
     "nodejs": "^0.0.0"
-  }
+  },
+  "name": "social-network-api",
+  "description": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/potworam/Social-network-api.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/potworam/Social-network-api/issues"
+  },
+  "homepage": "https://github.com/potworam/Social-network-api#readme"
 }
