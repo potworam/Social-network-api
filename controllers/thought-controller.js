@@ -14,7 +14,7 @@ const { User, Thought } = require('../models');
     },
      //GET /api/thoughts/:id
      getThoughtById({ params }, res) {
-        User.findOne({ _id: params.id })
+        Thought.findOne({ _id: params.id })
         .populate({ path: 'reactions', select: '-__v' })
         .select('-__v')
         .then((dbThoughtData) => {
@@ -63,15 +63,15 @@ const { User, Thought } = require('../models');
     },
      //DELETE /api/thoughts/:id
      deleteThought({ params }, res) {
-        Thought.findOneAndDelete({ _id: params.id })
+        Thought.findOneAndDelete({ _id: params.thoughtId })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
                 res.status(400).json({ message: 'No thought found with this id!' });
                 return;
             }
-            User.findOneAndUpdate(
+            return User.findOneAndUpdate(
                 {_id: params.username},
-                {$pull: {thoughts: params.id}},
+                {$pull: {thoughts: params.thoughtId}},
                 {new: true}
             );
         })
@@ -114,4 +114,4 @@ const { User, Thought } = require('../models');
 };
  
 
- model.exports = thoughtController;
+ module.exports = thoughtController;
