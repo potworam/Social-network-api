@@ -63,26 +63,29 @@ const { User, Thought } = require('../models');
     },
      //DELETE /api/thoughts/:id
      deleteThought({ params }, res) {
-        Thought.findOneAndDelete({ _id: params.thoughtId })
+        Thought.findOneAndDelete({ _id: params.id })
         .then(dbThoughtData => {
             if (!dbThoughtData) {
-                res.status(400).json({ message: 'No thought found with this id!' });
-                return;
+                return res.status(400).json({ message: 'No thought found with this id!' });
             }
             return User.findOneAndUpdate(
                 {_id: params.username},
-                {$pull: {thoughts: params.thoughtId}},
+                {$pull: {thoughts: params.id}},
                 {new: true}
-            );
-        })
+                )
+                .then(() => {
+                    res.json({message: 'Thought successfully deleted!'});
+                })
+                .catch(err => res.status(400).json(err));
+            })
         .then(dbUserData => res.json(dbUserData))
         .catch(err => res.json(err));
     },
      //POST /api/thoughts/:thoughtId/reactions
      createReaction({ params, body }, res) {
         Thought.findOneAndUpdate(
-            {_id: params.thoughtId},
-            {$push: {ractions: body}},
+            {_id: params.id},
+            {$push: {reactions: body}},
             {new: true, runValidators: true}
         )
         .then(dbThoughtData => {
@@ -98,7 +101,7 @@ const { User, Thought } = require('../models');
 
      deleteReaction({ params }, res) {
         Thought.findOneAndUpdate(
-            {_id: params.id},
+            {_id: params.thoughtId},
             {$pull: {reactions: {reactionId: params.reactionId}}},
             {new: true, runValidators: true}
         )
@@ -107,7 +110,7 @@ const { User, Thought } = require('../models');
                 res.status(400).json({ message: 'No user found with this id!' });
                 return;
             }
-            res.json(dbUserData);
+            res.json({message: 'reaction seuccessfully deleted'});
         })
         .catch(err => res.json(err));
     }

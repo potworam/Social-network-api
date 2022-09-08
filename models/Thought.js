@@ -1,5 +1,4 @@
 const { Schema, model, Types } = require('mongoose');
- const User = require('./User.js');
  const dateFormat = require('../utils/dateFormat');
 
  //reaction schema

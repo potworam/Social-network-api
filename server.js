@@ -20,7 +20,4 @@ mongoose.set('debug', true);
 app.use(require('./routes'));
 
 app.listen(PORT, () => console.log(`🌍 Connected on localhost:${PORT}`));
-0 comments on commit ea1b314
-Write
-Preview
 
