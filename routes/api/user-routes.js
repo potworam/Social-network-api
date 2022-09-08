@@ -9,7 +9,7 @@
      deleteUser,
      addFriend,
      removeFriend
- } = require('../../controllers/user-controller.js');
+ } = require('../../controllers/user-controller.js').default;
 
  // api/users
  router.route('/')
