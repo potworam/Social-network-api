@@ -8,8 +8,8 @@
      updateUser,
      deleteUser,
      addFriend,
-     removeFriend
- } = require('../../controllers/user-controller.js').default;
+     removeFriend,
+ } = require('../../controllers/user-controller');
 
  // api/users
  router.route('/')

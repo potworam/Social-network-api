@@ -1,5 +1,5 @@
-import { User, Thought } from '../models';
-import { populate } from '../models/User';
+const { User, Thought } = require('../models');
+const { populate } = require('../models/User');
 const userController = {
     //GET /api/users
     getAllUsers(req, res) {
@@ -96,4 +96,4 @@ const userController = {
     }
 };
 
-export default userController;
+module.exports = userController;
